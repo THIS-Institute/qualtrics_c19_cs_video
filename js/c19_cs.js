@@ -6,13 +6,6 @@ function writeNodesToConsole (nodes) {
     }
 }
 
-function showTabById(event, tabId) {
-    // console.log(tabId.length);
-    var divId = tabId.substring(0, tabId.length - 3);  // remove 'Tab'
-    // console.log("divId:" + divId);
-    showTab(event, divId);
-}
-
 function uncheckOptionButton(questionId) {
     var button = document.getElementById(questionId);
     if (button != null) {
@@ -37,111 +30,6 @@ function showOrHideButton(buttonId, hide){
             button.style.display = "inline"
         }
     }
-}
-
-function showTab(event, divId) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabContent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab
-    var currentDiv = document.getElementById(divId);
-    currentDiv.style.display = "block";
-
-    // and scroll to top
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-
-    // find tab for selected div and activate it
-    var selectedTab = document.getElementById(divId + "Tab");
-    if (selectedTab.className.indexOf("active") === -1) {
-        selectedTab.className += ' active'
-    }
-
-    // show and hide next/previous tab buttons according to tab
-    showOrHideButton('NextTabButton', (divId === "AnalysisDiv"));
-    showOrHideButton('PreviousTabButton', (divId === "ContextDiv"));
-
-    /* Qualtrics Back and Next are
-     * - in questions section always hidden - shown by script on buttons
-     * - in answers section, only hidden on intermediate tabs
-     */
-
-    // first find out if we are dealing with questions or answers
-    var divClasses = currentDiv.className;
-    var questionSection = (divClasses.indexOf("ctgCaseQuestion") >= 0);
-
-    console.log("divId:" + divId);
-    console.log("questionsecton:" + questionSection);
-
-    if (questionSection){
-        console.log("hiding next/prev")
-        hideButton("NextButton");
-        hideButton("PreviousButton");
-    } else {
-        showOrHideButton('NextButton', (divId !== "AnalysisDiv"));
-        showOrHideButton('PreviousButton', (divId !== "ContextDiv"));
-    }
-
-    // unselect check box for 'ok to continue'
-    // this bit of code is rather a hack - uses specific question ids
-    // really ought to be generalised if used again
-    uncheckOptionButton("QR~QID26~1");
-    uncheckOptionButton("QR~QID40~1")
-}
-
-function getCurrentTab(){
-    var currentTabs = document.getElementsByClassName("tablinks active");
-    if (currentTabs.length > 0){
-        return currentTabs[0];
-    } else {
-        return null;
-    }
-}
-
-function showNextTab() {
-    var currentTab = getCurrentTab();
-    var currentTabId = currentTab.id;
-    var nextTabId = "ContextDivTab";  // default to context
-    // console.log('currentTabId:' + currentTabId)
-
-    if (currentTabId === "ContextDivTab") {
-        nextTabId = "Trace1DivTab";
-    } else if (currentTabId === "Trace1DivTab") {
-        nextTabId = "Trace2DivTab";
-    } else if (currentTabId === "Trace2DivTab") {
-        nextTabId = "Trace3DivTab";
-    } else if (currentTabId === "Trace3DivTab") {
-        nextTabId = "AnalysisDivTab";
-    }
-    showTabById(null, nextTabId);
-}
-
-function showPreviousTab() {
-    var currentTab = getCurrentTab();
-    var currentTabId = currentTab.id;
-    var previousTabId = "ContextDivTab";  // default to context
-
-    if (currentTabId === "AnalysisDivTab") {
-        previousTabId = "Trace3DivTab";
-    } else if (currentTabId === "Trace3DivTab") {
-        previousTabId = "Trace2DivTab";
-    } else if (currentTabId === "Trace2DivTab") {
-        previousTabId = "Trace1DivTab";
-    }
-
-    showTabById(null, previousTabId);
 }
 
 function moveQuestions(targetDiv, questionNodes, questionCount, firstNodeToMove) {
