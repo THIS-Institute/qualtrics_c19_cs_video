@@ -127,7 +127,7 @@ function showNextQ() {
 	    let element = questionNodes[i];
 	    console.log("element.style = " + element.style);
 	    console.log("element.style.display = " + element.style.display);
-        if (element.style.display === "inline") {
+        if (element.style.display === "inline" || element.style.display == null) {
             visibleQIndex = i;
             console.log("visible Q = " + i);
             showOrHideElement(questionNodes[i], true);
