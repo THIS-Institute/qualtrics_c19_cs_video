@@ -117,7 +117,7 @@ function addNextPrevTabButtons() {
     newButton.id = 'NextTabButton';
     newButton.className = "NextButton";
     newButton.value = "Next →";
-    newButton.onclick = function(){showNextTab()};
+    newButton.onclick = function(){showNextQ()};
     buttonsDiv.insertBefore(newButton, buttonsDiv.childNodes[1]);
 
     newButton = document.createElement('Input');
@@ -125,6 +125,40 @@ function addNextPrevTabButtons() {
     newButton.id = 'PreviousTabButton';
     newButton.className = "PreviousButton";
     newButton.value = "← Back";
-    newButton.onclick = function(){showPreviousTab()};
+    newButton.onclick = function(){showPreviousQ()};
     buttonsDiv.insertBefore(newButton, buttonsDiv.childNodes[0]);
+}
+
+function showNextQ() {
+    showOrHideButton('QID43', true)
+    // var currentQ = getCurrentTab();
+    // var currentTabId = currentTab.id;
+    // var nextTabId = "ContextDivTab";  // default to context
+    // // console.log('currentTabId:' + currentTabId)
+    //
+    // if (currentTabId === "ContextDivTab") {
+    //     nextTabId = "Trace1DivTab";
+    // } else if (currentTabId === "Trace1DivTab") {
+    //     nextTabId = "Trace2DivTab";
+    // } else if (currentTabId === "Trace2DivTab") {
+    //     nextTabId = "Trace3DivTab";
+    // } else if (currentTabId === "Trace3DivTab") {
+    //     nextTabId = "AnalysisDivTab";
+    // }
+    // showTabById(null, nextTabId);
+}
+
+function showPreviousQ() {
+    showOrHideButton('QID43', false)
+}
+
+function showOrHideButton(qId, hide){
+    qDiv = document.getElementById(qId);
+    if (qDiv != null) {
+        if (hide) {
+            button.style.display = "none"
+        } else {
+            button.style.display = "inline"
+        }
+    }
 }
