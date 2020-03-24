@@ -127,13 +127,17 @@ function showNextQ() {
 	    let element = questionNodes[i];
         if (element.style.display === "inline") {
             visibleQIndex = i;
-            console.log("visible Q = " + visibleQIndex)
+            console.log("visible Q = " + i);
             showOrHideElement(questionNodes[i], true);
             showOrHideElement(questionNodes[i+1], true);
         }
         else if (i === visibleQIndex + 2) {
+            console.log("unhiding " + i);
             showOrHideElement(questionNodes[i], false);
-            showOrHideElement(questionNodes[i+1], false);        }
+            showOrHideElement(questionNodes[i+1], false);
+        } else {
+        	console.log("ignoring " + i)
+		}
 	}
 }
 
