@@ -157,10 +157,12 @@ function hideQuestions() {
 	let questionsDiv = document.getElementById('Questions');
 	let questionNodes = questionsDiv.childNodes;
 	writeNodesToConsole(questionNodes)
-	for (let i = 4; i < questionNodes.length; i=i+2){
+	for (let i = 2; i < questionNodes.length; i=i+2){
 	    let element = questionNodes[i]
-        console.log (element.nodeName)
+        console.log (element.id)
         element.style.display = "none"
-    }
+        element = questionNodes[i+1]
+        console.log (element.id)
+        element.style.display = "none"    }
 
 }
