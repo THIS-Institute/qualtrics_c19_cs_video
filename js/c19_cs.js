@@ -128,8 +128,8 @@ function showNextQ() {
 	    console.log("element.style.display = " + element.style.display);
 	    console.log("element.style.display null " + (element.style.display == null));
 	    console.log("element.style.display false " + !element.style.display);
-	    console.log("element.style.display undef " + typeof(element.style.display) === 'undefined');
-        if (element.style.display === "inline" || element.style.display == null) {
+	    console.log("element.style.display undef " + (typeof(element.style.display) === 'undefined'));
+        if (element.style.display === "inline" || !element.style.display) {
             visibleQIndex = i;
             console.log("visible Q = " + i);
             showOrHideElement(questionNodes[i], true);
