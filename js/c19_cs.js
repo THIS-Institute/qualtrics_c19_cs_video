@@ -21,17 +21,6 @@ function hideButton(buttonId) {
     }
 }
 
-function showOrHideButton(buttonId, hide){
-    button = document.getElementById(buttonId);
-    if (button != null) {
-        if (hide) {
-            button.style.display = "none"
-        } else {
-            button.style.display = "inline"
-        }
-    }
-}
-
 function moveQuestions(targetDiv, questionNodes, questionCount, firstNodeToMove) {
 	// note that there are THREE nodes per question in the html that Qualtrics generates
 	var i;
@@ -130,7 +119,7 @@ function addNextPrevTabButtons() {
 }
 
 function showNextQ() {
-    showOrHideButton('QID43', true)
+    showOrHideElement('QID43', true)
     // var currentQ = getCurrentTab();
     // var currentTabId = currentTab.id;
     // var nextTabId = "ContextDivTab";  // default to context
@@ -149,16 +138,28 @@ function showNextQ() {
 }
 
 function showPreviousQ() {
-    showOrHideButton('QID43', false)
+    showOrHideElement('QID43', false)
 }
 
-function showOrHideButton(qId, hide){
-    qDiv = document.getElementById(qId);
-    if (qDiv != null) {
+function showOrHideElement(qId, hide){
+    let elem = document.getElementById(qId);
+    if (elem != null) {
         if (hide) {
-            qDiv.style.display = "none"
+            elem.style.display = "none"
         } else {
-            qDiv.style.display = "inline"
+            elem.style.display = "inline"
         }
     }
+}
+
+function hideQuestions() {
+	let questionsDiv = document.getElementById('Questions');
+	let questionNodes = questionsDiv.childNodes;
+	writeNodesToConsole(questionNodes)
+	for (let i = 4; i < questionNodes.length; i=i+2){
+	    let element = questionNodes[i]
+        element.style.display = "none"
+    }
+
+
 }
