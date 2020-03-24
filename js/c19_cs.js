@@ -119,50 +119,44 @@ function addNextPrevTabButtons() {
 }
 
 function showNextQ() {
-    showOrHideElement('QID43', true)
-    // var currentQ = getCurrentTab();
-    // var currentTabId = currentTab.id;
-    // var nextTabId = "ContextDivTab";  // default to context
-    // // console.log('currentTabId:' + currentTabId)
-    //
-    // if (currentTabId === "ContextDivTab") {
-    //     nextTabId = "Trace1DivTab";
-    // } else if (currentTabId === "Trace1DivTab") {
-    //     nextTabId = "Trace2DivTab";
-    // } else if (currentTabId === "Trace2DivTab") {
-    //     nextTabId = "Trace3DivTab";
-    // } else if (currentTabId === "Trace3DivTab") {
-    //     nextTabId = "AnalysisDivTab";
-    // }
-    // showTabById(null, nextTabId);
+    console.log ("showNextQ");
+	let questionsDiv = document.getElementById('Questions');
+	let questionNodes = questionsDiv.childNodes;
+	let hiddenQIndex = -1;
+	for (let i = 2; i < questionNodes.length; i=i+2){
+	    let element = questionNodes[i];
+        if (element.style.display === "none") {
+            hiddenQIndex = i;
+            showOrHideElement(questionNodes[i], true);
+            showOrHideElement(questionNodes[i+1], true);
+        }
+        else if (i === hiddenQIndex + 2) {
+            showOrHideElement(questionNodes[i], false);
+            showOrHideElement(questionNodes[i+1], false);        }
+	}
 }
 
 function showPreviousQ() {
-    showOrHideElement('QID43', false)
+    // showOrHideElement('QID43', false)
 }
 
-function showOrHideElement(qId, hide){
-    let elem = document.getElementById(qId);
-    if (elem != null) {
+function showOrHideElement(element, hide){
+    if (element != null) {
         if (hide) {
-            elem.style.display = "none"
+            element.style.display = "none"
         } else {
-            elem.style.display = "inline"
+            element.style.display = "inline"
         }
     }
 }
 
 function hideQuestions() {
-    console.log ("hideQuestions")
+    console.log ("hideQuestions");
 	let questionsDiv = document.getElementById('Questions');
 	let questionNodes = questionsDiv.childNodes;
-	writeNodesToConsole(questionNodes)
 	for (let i = 4; i < questionNodes.length; i=i+2){
-	    let element = questionNodes[i]
-        console.log (element.id)
-        element.style.display = "none"
-        element = questionNodes[i+1]
-        console.log (element.id)
-        element.style.display = "none"    }
-
+	    showOrHideElement(questionNodes[i], true);
+	    showOrHideElement(questionNodes[i+1], true);
+	}
 }
+
