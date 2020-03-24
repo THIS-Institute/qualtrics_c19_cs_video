@@ -122,15 +122,16 @@ function showNextQ() {
     console.log ("showNextQ");
 	let questionsDiv = document.getElementById('Questions');
 	let questionNodes = questionsDiv.childNodes;
-	let hiddenQIndex = -1;
+	let visibleQIndex = -1;
 	for (let i = 2; i < questionNodes.length; i=i+2){
 	    let element = questionNodes[i];
-        if (element.style.display === "none") {
-            hiddenQIndex = i;
+        if (element.style.display === "inline") {
+            visibleQIndex = i;
+            console.log("visible Q = " + visibleQIndex)
             showOrHideElement(questionNodes[i], true);
             showOrHideElement(questionNodes[i+1], true);
         }
-        else if (i === hiddenQIndex + 2) {
+        else if (i === visibleQIndex + 2) {
             showOrHideElement(questionNodes[i], false);
             showOrHideElement(questionNodes[i+1], false);        }
 	}
@@ -143,8 +144,10 @@ function showPreviousQ() {
 function showOrHideElement(element, hide){
     if (element != null) {
         if (hide) {
+        	console.log("hiding:" + element.id);
             element.style.display = "none"
         } else {
+        	console.log("unhiding:" + element.id);
             element.style.display = "inline"
         }
     }
