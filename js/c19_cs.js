@@ -125,8 +125,10 @@ function showNextQ() {
 	let visibleQIndex = -1;
 	for (let i = 2; i < questionNodes.length; i=i+2){
 	    let element = questionNodes[i];
-	    console.log("element.style = " + element.style);
 	    console.log("element.style.display = " + element.style.display);
+	    console.log("element.style.display null " + (element.style.display == null));
+	    console.log("element.style.display false " + !element.style.display);
+	    console.log("element.style.display undef " + typeof(element.style.display) === 'undefined');
         if (element.style.display === "inline" || element.style.display == null) {
             visibleQIndex = i;
             console.log("visible Q = " + i);
