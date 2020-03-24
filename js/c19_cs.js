@@ -156,9 +156,9 @@ function showOrHideButton(qId, hide){
     qDiv = document.getElementById(qId);
     if (qDiv != null) {
         if (hide) {
-            button.style.display = "none"
+            qDiv.style.display = "none"
         } else {
-            button.style.display = "inline"
+            qDiv.style.display = "inline"
         }
     }
 }
