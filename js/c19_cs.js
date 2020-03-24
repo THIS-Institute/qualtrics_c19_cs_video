@@ -153,13 +153,14 @@ function showOrHideElement(qId, hide){
 }
 
 function hideQuestions() {
+    console.log ("hideQuestions")
 	let questionsDiv = document.getElementById('Questions');
 	let questionNodes = questionsDiv.childNodes;
 	writeNodesToConsole(questionNodes)
 	for (let i = 4; i < questionNodes.length; i=i+2){
 	    let element = questionNodes[i]
+        console.log (element.nodeName)
         element.style.display = "none"
     }
-
 
 }
