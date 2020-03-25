@@ -86,16 +86,20 @@ function restructureHTMLforVignette(qualtricsWin, answersSection) {
 function restructureQuestionDivs() {
 	let questionsDiv = document.getElementById('Questions');
 	let questionNodes = questionsDiv.childNodes;
+	let realQuestionsCount = questionNodes.length/2 - 1
 
 	// create the new div
-	let newDiv = document.createElement('div');
-	newDiv.id = 'videoClip';
-
+	let videoDiv = document.createElement('div');
+	videoDiv.id = 'videoClip';
+	let realQuestionsDiv = document.createElement('div');
+	realQuestionsDiv.id = 'realQuestions';
 	// insert new div into questions div
-	questionsDiv.insertBefore(newDiv, questionNodes[0]);
+	questionsDiv.insertBefore(realQuestionsDiv, questionNodes[0]);
+	questionsDiv.insertBefore(videoDiv, questionNodes[0]);
 
 	// move questions into new div
-	moveQuestions(newDiv, questionNodes, 1, 1);
+	moveQuestions(videoDiv, questionNodes, 1, 1);
+	moveQuestions(realQuestionsDiv, questionNodes, realQuestionsCount, 1);
 }
 
 function addNextPrevTabButtons() {
