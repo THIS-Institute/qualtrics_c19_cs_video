@@ -88,17 +88,17 @@ function addNextPrevTabButtons() {
 
     var newButton = document.createElement('Input');
     newButton.type = 'button';
-    newButton.id = 'NextTabButton';
-    newButton.className = "NextButton";
-    newButton.value = "Next →";
+    newButton.id = 'NextQuestionButton';
+    // newButton.className = "NextButton";
+    newButton.value = "Next";
     newButton.onclick = function(){showNextQ()};
     buttonsDiv.insertBefore(newButton, buttonsDiv.childNodes[1]);
 
     newButton = document.createElement('Input');
     newButton.type = 'button';
-    newButton.id = 'PreviousTabButton';
-    newButton.className = "PreviousButton";
-    newButton.value = "← Back";
+    newButton.id = 'PreviousQuestionButton';
+    // newButton.className = "PreviousButton";
+    newButton.value = "Back";
     newButton.onclick = function(){showPreviousQ()};
     buttonsDiv.insertBefore(newButton, buttonsDiv.childNodes[0]);
 }
@@ -108,12 +108,9 @@ function showNextQ() {
 	let questionsDiv = document.getElementById('Questions');
 	let questionNodes = questionsDiv.childNodes;
 	let visibleQIndex = -1;
+	let newVisibleQIndex = -1;
 	for (let i = 2; i < questionNodes.length; i=i+2){
 	    let element = questionNodes[i];
-	    console.log("element.style.display = " + element.style.display);
-	    console.log("element.style.display null " + (element.style.display == null));
-	    console.log("element.style.display false " + !element.style.display);
-	    console.log("element.style.display undef " + (typeof(element.style.display) === 'undefined'));
 	    // hide if currently visible but not last question
         if ((element.style.display === "inline" || !element.style.display) && i < questionNodes.length - 2) {
             visibleQIndex = i;
@@ -125,10 +122,13 @@ function showNextQ() {
             console.log("unhiding " + i);
             showOrHideElement(questionNodes[i], false);
             showOrHideElement(questionNodes[i+1], false);
+            newVisibleQIndex = i;
         } else {
         	console.log("ignoring " + i)
 		}
 	}
+	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 2))
+	showOrHideElementById('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
 }
 
 function showPreviousQ() {
@@ -138,10 +138,6 @@ function showPreviousQ() {
 	let visibleQIndex = -1;
 	for (let i = questionNodes.length - 2; i >= 2 ; i=i-2){
 	    let element = questionNodes[i];
-	    console.log("element.style.display = " + element.style.display);
-	    console.log("element.style.display null " + (element.style.display == null));
-	    console.log("element.style.display false " + !element.style.display);
-	    console.log("element.style.display undef " + (typeof(element.style.display) === 'undefined'));
 	    // hide if currently visible but not first question
         if ((element.style.display === "inline" || !element.style.display) && i > 2) {
             visibleQIndex = i;
@@ -179,5 +175,11 @@ function hideQuestions() {
 	    showOrHideElement(questionNodes[i], true);
 	    showOrHideElement(questionNodes[i+1], true);
 	}
+	// and hide back button initially
+	showOrHideElementById('PreviousQuestionButton', true)
 }
 
+function showOrHideElementById(elementId, hide){
+    let element = document.getElementById(elementId);
+	showOrHideElement(element, hide)
+}
