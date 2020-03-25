@@ -98,8 +98,8 @@ function restructureQuestionDivs() {
 	questionsDiv.insertBefore(videoDiv, questionNodes[0]);
 
 	// move questions into new div
-	moveQuestions(videoDiv, questionNodes, 1, 1);
-	moveQuestions(realQuestionsDiv, questionNodes, realQuestionsCount, 1);
+	moveQuestions(videoDiv, questionNodes, 1, 2);
+	moveQuestions(realQuestionsDiv, questionNodes, realQuestionsCount, 2);
 }
 
 function addNextPrevTabButtons() {
