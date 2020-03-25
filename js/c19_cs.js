@@ -9,7 +9,7 @@ function writeNodesToConsole (nodes) {
 function moveQuestions(targetDiv, questionNodes, questionCount, firstNodeToMove) {
 	// note that there are THREE nodes per question in the html that Qualtrics generates
 	var i;
-	var nodesPerQuestion = 3;
+	var nodesPerQuestion = 2;
 	for (i = 0; i < questionCount * nodesPerQuestion; i++) {
         var questionNode = questionNodes[firstNodeToMove];
         // console.log('questionNode:' + questionNode.id)
@@ -95,8 +95,7 @@ function restructureQuestionDivs() {
 	questionsDiv.insertBefore(newDiv, questionNodes[0]);
 
 	// move questions into new div
-	moveQuestions(newDiv, questionNodes, 2, 0);
-
+	moveQuestions(newDiv, questionNodes, 1, 1);
 }
 
 function addNextPrevTabButtons() {
