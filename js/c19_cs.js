@@ -155,7 +155,7 @@ function showPreviousQ() {
 	let questionsDiv = document.getElementById('Questions');
 	let questionNodes = questionsDiv.childNodes;
 	let visibleQIndex = -1;
-	for (let i = questionNodes.length; i >= 0 ; i=i-2){
+	for (let i = questionNodes.length - 2; i >= 0 ; i=i-2){
 	    let element = questionNodes[i];
 	    // hide if currently visible but not first question
         if ((element.style.display === "inline" || !element.style.display) && i > 2) {
