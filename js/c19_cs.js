@@ -152,7 +152,7 @@ function showNextQ() {
 
 function showPreviousQ() {
     console.log ("showPreviousQ");
-	let questionsDiv = document.getElementById('Questions');
+	let questionsDiv = document.getElementById('realQuestions');
 	let questionNodes = questionsDiv.childNodes;
 	let visibleQIndex = -1;
 	for (let i = questionNodes.length - 2; i >= 0 ; i=i-2){
