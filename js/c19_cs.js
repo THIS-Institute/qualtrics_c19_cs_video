@@ -6,21 +6,6 @@ function writeNodesToConsole (nodes) {
     }
 }
 
-function uncheckOptionButton(questionId) {
-    var button = document.getElementById(questionId);
-    if (button != null) {
-        console.log("q:" + button);
-        button.checked = false;
-    }
-}
-
-function hideButton(buttonId) {
-    var button = document.getElementById(buttonId);
-    if (button != null){
-        button.style.display = "none";
-    }
-}
-
 function moveQuestions(targetDiv, questionNodes, questionCount, firstNodeToMove) {
 	// note that there are THREE nodes per question in the html that Qualtrics generates
 	var i;
@@ -146,16 +131,39 @@ function showNextQ() {
 }
 
 function showPreviousQ() {
-    // showOrHideElement('QID43', false)
+    console.log ("showPreviousQ");
+	let questionsDiv = document.getElementById('Questions');
+	let questionNodes = questionsDiv.childNodes;
+	let visibleQIndex = -1;
+	for (let i = questionNodes.length - 2; i >= 2 ; i=i-2){
+	    let element = questionNodes[i];
+	    console.log("element.style.display = " + element.style.display);
+	    console.log("element.style.display null " + (element.style.display == null));
+	    console.log("element.style.display false " + !element.style.display);
+	    console.log("element.style.display undef " + (typeof(element.style.display) === 'undefined'));
+        if (element.style.display === "inline" || !element.style.display) {
+            visibleQIndex = i;
+            console.log("visible Q = " + i);
+            showOrHideElement(questionNodes[i], true);
+            showOrHideElement(questionNodes[i+1], true);
+        }
+        else if (i === visibleQIndex - 2) {
+            console.log("unhiding " + i);
+            showOrHideElement(questionNodes[i], false);
+            showOrHideElement(questionNodes[i+1], false);
+        } else {
+        	console.log("ignoring " + i)
+		}
+	}
 }
 
 function showOrHideElement(element, hide){
     if (element != null) {
         if (hide) {
-        	console.log("hiding:" + element.id);
+        	// console.log("hiding:" + element.id);
             element.style.display = "none"
         } else {
-        	console.log("unhiding:" + element.id);
+        	// console.log("unhiding:" + element.id);
             element.style.display = "inline"
         }
     }
