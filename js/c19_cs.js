@@ -180,7 +180,7 @@ function hideQuestions() {
 	}
 	// and hide back button initially
 	// showOrHideElementById('PreviousQuestionButton', true)
-	showOrHideElementByClass('PreviousQuestionButton', true)
+	showOrHideElementByClass('PreviousQuestionButton PreviousButton Button', true)
 }
 
 function showOrHideElementById(elementId, hide){
