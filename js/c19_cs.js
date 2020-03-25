@@ -114,7 +114,8 @@ function showNextQ() {
 	    console.log("element.style.display null " + (element.style.display == null));
 	    console.log("element.style.display false " + !element.style.display);
 	    console.log("element.style.display undef " + (typeof(element.style.display) === 'undefined'));
-        if (element.style.display === "inline" || !element.style.display) {
+	    // hide if currently visible but not last question
+        if ((element.style.display === "inline" || !element.style.display) && i < questionNodes.length - 2) {
             visibleQIndex = i;
             console.log("visible Q = " + i);
             showOrHideElement(questionNodes[i], true);
@@ -141,7 +142,8 @@ function showPreviousQ() {
 	    console.log("element.style.display null " + (element.style.display == null));
 	    console.log("element.style.display false " + !element.style.display);
 	    console.log("element.style.display undef " + (typeof(element.style.display) === 'undefined'));
-        if (element.style.display === "inline" || !element.style.display) {
+	    // hide if currently visible but not first question
+        if ((element.style.display === "inline" || !element.style.display) && i > 2) {
             visibleQIndex = i;
             console.log("visible Q = " + i);
             showOrHideElement(questionNodes[i], true);
