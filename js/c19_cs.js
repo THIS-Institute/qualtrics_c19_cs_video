@@ -88,16 +88,16 @@ function addNextPrevTabButtons() {
 
     var newButton = document.createElement('Input');
     newButton.type = 'button';
-    newButton.id = 'NextQuestionButton';
-    newButton.className = "NextButton Button";
+    newButton.id = 'NextButton';
+    newButton.className = "NextQuestionButton NextButton Button";
     newButton.value = "Next";
     newButton.onclick = function(){showNextQ()};
     buttonsDiv.insertBefore(newButton, buttonsDiv.childNodes[1]);
 
     newButton = document.createElement('Input');
     newButton.type = 'button';
-    newButton.id = 'PreviousQuestionButton';
-    newButton.className = "PreviousButton Button";
+    newButton.id = 'PreviousButton';
+    newButton.className = "PreviousQuestionButton PreviousButton Button";
     newButton.value = "Back";
     newButton.onclick = function(){showPreviousQ()};
     buttonsDiv.insertBefore(newButton, buttonsDiv.childNodes[0]);
@@ -127,8 +127,8 @@ function showNextQ() {
         	console.log("ignoring " + i)
 		}
 	}
-	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 2))
-	showOrHideElementById('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
+	showOrHideElementByClass('PreviousQuestionButton', (newVisibleQIndex === 2))
+	showOrHideElementByClass('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
 }
 
 function showPreviousQ() {
@@ -154,8 +154,8 @@ function showPreviousQ() {
         	console.log("ignoring " + i)
 		}
 	}
-	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 2))
-	showOrHideElementById('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
+	showOrHideElementByClass('PreviousQuestionButton', (newVisibleQIndex === 2))
+	showOrHideElementByClass('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
 }
 
 function showOrHideElement(element, hide){
@@ -179,10 +179,18 @@ function hideQuestions() {
 	    showOrHideElement(questionNodes[i+1], true);
 	}
 	// and hide back button initially
-	showOrHideElementById('PreviousQuestionButton', true)
+	// showOrHideElementById('PreviousQuestionButton', true)
+	showOrHideElementByClass('PreviousQuestionButton', true)
 }
 
 function showOrHideElementById(elementId, hide){
     let element = document.getElementById(elementId);
+	showOrHideElement(element, hide)
+}
+
+function showOrHideElementByClass(classNames, hide){
+    let elements = document.getElementsByClassName(classNames);
+    var element;
+    for (element in elements)
 	showOrHideElement(element, hide)
 }
