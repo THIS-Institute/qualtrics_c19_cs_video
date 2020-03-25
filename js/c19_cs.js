@@ -83,6 +83,22 @@ function restructureHTMLforVignette(qualtricsWin, answersSection) {
 	}
 }
 
+function restructureQuestionDivs() {
+	let questionsDiv = document.getElementById('Questions');
+	let questionNodes = questionsDiv.childNodes;
+
+	// create the new div
+	let newDiv = document.createElement('div');
+	newDiv.id = 'videoClip';
+
+	// insert new div into questions div
+	questionsDiv.insertBefore(newDiv, questionNodes[0]);
+
+	// move questions into new div
+	moveQuestions(newDiv, questionNodes, 2, 0);
+
+}
+
 function addNextPrevTabButtons() {
     var buttonsDiv = document.getElementById('Buttons');
 
