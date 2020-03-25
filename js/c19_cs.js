@@ -124,11 +124,11 @@ function addNextPrevTabButtons() {
 
 function showNextQ() {
     console.log ("showNextQ");
-	let questionsDiv = document.getElementById('Questions');
+	let questionsDiv = document.getElementById('realQuestions');
 	let questionNodes = questionsDiv.childNodes;
 	let visibleQIndex = -1;
 	let newVisibleQIndex = -1;
-	for (let i = 2; i < questionNodes.length; i=i+2){
+	for (let i = 0; i < questionNodes.length; i=i+2){
 	    let element = questionNodes[i];
 	    // hide if currently visible but not last question
         if ((element.style.display === "inline" || !element.style.display) && i < questionNodes.length - 2) {
@@ -155,7 +155,7 @@ function showPreviousQ() {
 	let questionsDiv = document.getElementById('Questions');
 	let questionNodes = questionsDiv.childNodes;
 	let visibleQIndex = -1;
-	for (let i = questionNodes.length - 2; i >= 2 ; i=i-2){
+	for (let i = questionNodes.length; i >= 0 ; i=i-2){
 	    let element = questionNodes[i];
 	    // hide if currently visible but not first question
         if ((element.style.display === "inline" || !element.style.display) && i > 2) {
@@ -191,9 +191,9 @@ function showOrHideElement(element, hide){
 
 function hideQuestions() {
     console.log ("hideQuestions");
-	let questionsDiv = document.getElementById('Questions');
+	let questionsDiv = document.getElementById('realQuestions');
 	let questionNodes = questionsDiv.childNodes;
-	for (let i = 4; i < questionNodes.length; i=i+2){
+	for (let i = 2; i < questionNodes.length; i=i+2){
 	    showOrHideElement(questionNodes[i], true);
 	    showOrHideElement(questionNodes[i+1], true);
 	}
