@@ -148,8 +148,8 @@ function showNextQ() {
         	console.log("ignoring " + i)
 		}
 	}
-	showOrHideElementByClass('PreviousQuestionButton', (newVisibleQIndex === 2))
-	showOrHideElementByClass('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
+	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 2))
+	showOrHideElementById('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
 }
 
 function showPreviousQ() {
@@ -175,8 +175,8 @@ function showPreviousQ() {
         	console.log("ignoring " + i)
 		}
 	}
-	showOrHideElementByClass('PreviousQuestionButton', (newVisibleQIndex === 2))
-	showOrHideElementByClass('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
+	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 2))
+	showOrHideElementById('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
 }
 
 function showOrHideElement(element, hide){
@@ -201,7 +201,7 @@ function hideQuestions() {
 	}
 	// and hide back button initially
 	// showOrHideElementById('PreviousQuestionButton', true)
-	showOrHideElementByClass('PreviousQuestionButton PreviousButton Button', true)
+	showOrHideElementById('PreviousQuestionButton', true)
 }
 
 function showOrHideElementById(elementId, hide){
