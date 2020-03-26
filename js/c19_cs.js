@@ -124,6 +124,16 @@ function addNextPrevTabButtons() {
     buttonsDiv.insertBefore(newButton, buttonsDiv.childNodes[0]);
 }
 
+function showOrHideNext(hideQuestionButton) {
+	showOrHideElementById('NextQuestionButton', hideQuestionButton);
+	showOrHideElementById('NextButton', !hideQuestionButton);
+}
+
+function showOrHidePrevious(hideQuestionButton) {
+	showOrHideElementById('PreviousQuestionButton', hideQuestionButton);
+	showOrHideElementById('PreviousButton', !hideQuestionButton);
+}
+
 function showNextQ() {
     console.log ("showNextQ");
 	let questionsDiv = document.getElementById('realQuestions');
@@ -148,8 +158,8 @@ function showNextQ() {
         	console.log("ignoring " + i)
 		}
 	}
-	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 0))
-	showOrHideElementById('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
+	showOrHidePrevious(newVisibleQIndex === 0);
+	showOrHideNext(newVisibleQIndex === questionNodes.length - 2);
 }
 
 function showPreviousQ() {
@@ -175,8 +185,8 @@ function showPreviousQ() {
         	console.log("ignoring " + i)
 		}
 	}
-	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 0))
-	showOrHideElementById('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
+	showOrHidePrevious(newVisibleQIndex === 0);
+	showOrHideNext(newVisibleQIndex === questionNodes.length - 2);
 }
 
 function showOrHideElement(element, hide){
@@ -201,7 +211,7 @@ function hideQuestions() {
 	}
 	// and hide back button initially
 	// showOrHideElementById('PreviousQuestionButton', true)
-	showOrHideElementById('PreviousQuestionButton', true)
+	showOrHidePrevious(true)
 }
 
 function showOrHideElementById(elementId, hide){
