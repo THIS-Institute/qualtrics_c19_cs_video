@@ -107,16 +107,18 @@ function addNextPrevTabButtons() {
 
     var newButton = document.createElement('Input');
     newButton.type = 'button';
-    newButton.id = 'NextButton';
-    newButton.className = "NextQuestionButton NextButton Button";
+    newButton.id = 'NextQuestionButton';
+    // newButton.className = "NextQuestionButton NextButton Button";
+    newButton.className = "btn";
     newButton.value = "Next";
     newButton.onclick = function(){showNextQ()};
     buttonsDiv.insertBefore(newButton, buttonsDiv.childNodes[1]);
 
     newButton = document.createElement('Input');
     newButton.type = 'button';
-    newButton.id = 'PreviousButton';
-    newButton.className = "PreviousQuestionButton PreviousButton Button";
+    newButton.id = 'PreviousQuestionButton';
+    // newButton.className = "PreviousQuestionButton PreviousButton Button";
+    newButton.className = "btn";
     newButton.value = "Back";
     newButton.onclick = function(){showPreviousQ()};
     buttonsDiv.insertBefore(newButton, buttonsDiv.childNodes[0]);
