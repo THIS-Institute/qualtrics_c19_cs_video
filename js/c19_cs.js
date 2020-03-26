@@ -148,7 +148,7 @@ function showNextQ() {
         	console.log("ignoring " + i)
 		}
 	}
-	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 2))
+	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 0))
 	showOrHideElementById('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
 }
 
@@ -175,7 +175,7 @@ function showPreviousQ() {
         	console.log("ignoring " + i)
 		}
 	}
-	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 2))
+	showOrHideElementById('PreviousQuestionButton', (newVisibleQIndex === 0))
 	showOrHideElementById('NextQuestionButton', (newVisibleQIndex === questionNodes.length - 2))
 }
 
