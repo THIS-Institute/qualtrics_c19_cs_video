@@ -212,6 +212,7 @@ function hideQuestions() {
 	// and hide back button initially
 	// showOrHideElementById('PreviousQuestionButton', true)
 	showOrHidePrevious(true)
+	showOrHideNext(false)
 }
 
 function showOrHideElementById(elementId, hide){
